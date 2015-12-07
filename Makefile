@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -pg -Wall
+CFLAGS = -Wall -O2
 
 all: gh p
 

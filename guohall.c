@@ -54,7 +54,7 @@ void guohall(uint8_t *bmp, int cc)
     while (1) {
 	cn = guohall_iter(bmp, copy, cc);
 	if (cc - cn == 0) break;
-	cn = cn;
+	cc = cn;
 	memcpy(bmp, copy, sizeof(uint8_t)*W*H);
     }
     free(copy);
@@ -69,7 +69,7 @@ int main(int argc, char **argv)
     bmp = bmp_read(argv[1], &H, &W, &cc);
     for (int i=0; i<ntimes; i++)  
 	guohall(bmp, cc);
-    bmp_write("tmp", bmp, H, W);
+    //bmp_write("tmp", bmp, H, W);
     free(bmp);
     return 0;
 }

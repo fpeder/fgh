@@ -88,8 +88,9 @@ void guohall(uint64_t *bmp, int cc)
     uint64_t *cpy = malloc(sizeof(uint64_t)*H*W);
     while (1) {
 	cn = guohall_iter(bmp, cpy, cc);
-	if (cc - cn == 0) break; cc = cn;
-	bmp = memcpy(bmp, cpy, sizeof(uint64_t)*H*W);
+	if (cc - cn == 0) break;
+	cc = cn;
+	memcpy(bmp, cpy, sizeof(uint64_t)*H*W);
     }
     free(cpy);
 }
@@ -97,13 +98,13 @@ void guohall(uint64_t *bmp, int cc)
 int main(int argc, char **argv)
 {
     uint64_t *bmp;
-    int count=0, ntimes=1;
+    int count=0, ntimes;
     assert(argc == 3);
     ntimes = atoi(argv[2]);
     bmp = bwi_read(argv[1], &H, &W, &count);
     for (int i=0; i<ntimes; i++)
-	guohall(bmp, count);
-    bwi_write("tmp", bmp, H, W);
+	guohall(bmp, W*H*64);
+    //bwi_write("tmp", bmp, H, W);
     free(bmp);
     return 0;
 }
